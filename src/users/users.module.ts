@@ -5,6 +5,7 @@ import { UserDTO } from './user.dto';
 import { User } from './user.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidateUniqUserPipe } from './validateUniqUser.pipe';
+import { Roles } from '../roles/roles.decorator';
 
 const guards = [JwtAuthGuard];
 
@@ -23,6 +24,7 @@ const guards = [JwtAuthGuard];
           },
           update: { guards },
           delete: { guards },
+          read: { guards, decorators: [Roles('admin')] },
         },
       ],
     }),

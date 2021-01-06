@@ -6,9 +6,11 @@ import { jwtConstants } from './auth.constants';
 import { AuthResolver } from './auth.resolver';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
+import { RolesModule } from '../roles/roles.module';
 
 @Module({
   imports: [
+    RolesModule,
     UsersModule,
     PassportModule,
     JwtModule.register({

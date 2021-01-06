@@ -10,7 +10,7 @@ export class ValidateUniqUserPipe implements PipeTransform {
   ) {}
 
   async transform(value: { input: { user: UserDTO } }) {
-    const userLogin = value.input.user.login;
+    const userLogin = value?.input?.user?.login;
     const [user] = await this.usersService.query({
       filter: { login: { eq: userLogin } },
       paging: { limit: 1 },

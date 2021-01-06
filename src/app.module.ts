@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { TodoItemModule } from './todo-item/todo-item.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       database: './test.db',
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
     GraphQLModule.forRoot({
       // set to true to automatically generate schema
@@ -23,6 +24,7 @@ import { AuthModule } from './auth/auth.module';
     TodoItemModule,
     UsersModule,
     AuthModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -23,6 +23,7 @@ export class AuthService {
     });
     // dont use plain text passwords in production!
     if (user && user.passwordHash === pass) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { passwordHash, ...result } = user;
       return result;
     }
@@ -31,6 +32,7 @@ export class AuthService {
 
   async currentUser(authUser: AuthenticatedUser): Promise<User> {
     try {
+      // noinspection UnnecessaryLocalVariableJS
       const user = await this.usersService.getById(authUser.id);
       return user;
     } catch (e) {
@@ -39,7 +41,11 @@ export class AuthService {
   }
 
   login(user: AuthenticatedUser): Promise<LoginResponseDto> {
-    const payload: JwtPayload = { login: user.login, sub: user.id };
+    const payload: JwtPayload = {
+      login: user.login,
+      sub: user.id,
+      role: user.role,
+    };
     return Promise.resolve({
       accessToken: this.jwtService.sign(payload),
     });
